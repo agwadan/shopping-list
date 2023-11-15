@@ -1,29 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text,Image,  View } from 'react-native';
+import { StyleSheet, Text,Image,  View, FlatList } from 'react-native';
+import Header from './components/header';
+import ListItem from './components/ListItem';
+import { useState } from 'react';
 
 export default function App() {
+
+  const [items, setItems] = useState([
+    {id:1, text: 'Milk' },
+    {id:2, text: 'Eggs' },
+    {id:3, text: 'Bread' },
+    {id:4, text: 'Juice' },
+  ]);
+
   return (
     <View style={styles.container}>
-      <Text>Hello Uganda</Text>
-      <Image 
-        source={{uri: 'https://www.freedigitalphotos.net/images/img/homepage/394230.jpg'}} 
-        style={styles.img}
-      />
-      <StatusBar style="auto " />
+     <Header/>
+     <FlatList
+      data={items}
+      renderItem={({item})=> <ListItem item={item}/>}
+     />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#ffdb58',
-    alignItems: 'center',
-    justifyContent: 'center',
+   paddingTop: 60
   },
-
-  img: {
-    width: 100,
-    height: 100
-  }
 });
