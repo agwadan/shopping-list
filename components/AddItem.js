@@ -5,11 +5,14 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+ 
 } from 'react-native';
 
 const AddItem = ({addItem}) => {
   const [text, setText] = useState('');
-  const onChange = textValue => setText(textValue);
+
+  /* Function to handle change of text */
+  const onChange = (textValue) => setText(textValue);
 
   return (
     <View>
@@ -22,11 +25,11 @@ const AddItem = ({addItem}) => {
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          addItem(text);
+          addItem(text);//-------------------Declared in the useState
           setText('');
         }}>
         <Text style={styles.btnText}>
-          <Icon name="plus" size={20} /> Add Item
+         + Add Item
         </Text>
       </TouchableOpacity>
     </View>

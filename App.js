@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text,Image,  View, FlatList } from 'react-native';
-import Header from './components/header';
-import ListItem from './components/ListItem';
 import { useState } from 'react';
+import { StyleSheet, Text,Image,  View, FlatList, Alert } from 'react-native';
+import Header from './components/Header';
+import ListItem from './components/ListItem';
+import AddItem from './components/AddItem';
 
 export default function App() {
 
@@ -19,9 +19,22 @@ export default function App() {
     })
   }
 
+  const addItem = (text) => {
+    if(!text){
+      Alert.alert('Error', "Please Enter sometext",[{text: 'Okay'}])
+    } else {
+      setItems(prevItems => {
+        return[{id: 6, text: text},...prevItems];
+      })
+    }
+  }
+
   return (
     <View style={styles.container}>
      <Header/>
+     <AddItem
+      addItem={addItem}
+     />
      <FlatList
       data={items}
       renderItem={({item})=> (
